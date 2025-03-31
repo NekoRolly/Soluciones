@@ -17,7 +17,7 @@ vector<int> adj[N];
 int cnt;
 bool vis[N];
 
-int get(int x){
+int get(int x){ // retorna x^k
 	int ans = 1;
 	for (int i=0; i<k; i++)
 		ans = P(ans, x);
@@ -49,7 +49,7 @@ int main(){
 		}
 	}
 
-	int ans = get(n);
+	int ans = get(n); // n^k
 
 	for (int i=1; i<=n; i++)
 		if (!vis[i]){
