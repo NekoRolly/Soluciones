@@ -8,58 +8,42 @@ typedef pair<ll, ll> pll;
 const int inf = 1e9 + 4;
 const ll infll = 1e18 + 4;
 const int mod = 1e9 + 7;
-const int N = 1e6 + 4;
-
-bool is_good(int x,int a,int b){
-    while (x > 0){
-        if (x%10 != a && x%10 != b)
-            return false;
-        x /= 10;
-    }
-    return true;
-}
-
-int P(int a,int b){
-    return 1ll*a*b%mod;
-}
-
-int S(int a,int b){
-    return (a+b)%mod;
-}
-
-int BP(int a,int b){
-    int ans = 1;
-    for (; b>>=1; a=P(a, a))
-        if (b&1)
-            ans = P(ans, a);
-    return ans;
-}
-
-int fac[N],Ifac[N];
-
-int C(int n,int k){
-    return P(fac[n], P(Ifac[k], Ifac[n-k]));
-}
+const int N = 2e5 + 4;
 
 void solve(){
-    int a,b,n;
-    cin >> a >> b >> n;
+    int n = 1e7;
+    int lp[n+1] = {0};
+    vector<int> pr;
 
-    fac[0] = 1;
-    for (int i=1; i<=n; i++)
-        fac[i] = P(fac[i-1], i);
-    Ifac[n] = BP(fac[n], mod-2);
-    for (int i=n-1; i>=0; i--)
-        Ifac[i] = P(Ifac[i+1], i+1);
-    
-    int ans = 0;
-    for (int i=0; i<=n; i++){
-        int sum = a*i + b*(n-i);
-        if (is_good(sum, a, b))
-            ans = S(ans, C(n, i));
+    for (int i=2; i<=n; i++)
+        if (lp[i] == 0){
+            pr.push_back(i);
+            for (int j=i; j<=n; j+=i)
+                lp[j] = i;
+        }
+
+    int q;
+    cin >> q;
+
+    while (q--){
+        int x;
+        cin >> x;
+        int k = 1e4;
+        ll ans = 0;
+        for (int i=0; i<k; i++)
+            ans += x / pr[i];
+
+        if (x >= pr[k]){
+            int l = k;
+            for (int val=x/pr[k]; val>=1; val--){
+                int r = upper_bound(pr.begin(), pr.end(), x/val) - pr.begin();
+                ans += 1ll * (r-l) * val;
+                l = r;
+            }
+        }
+
+        cout << ans << "\n";
     }
-
-    cout << ans << "\n";
 }
 
 int main(){
