@@ -2,21 +2,23 @@
 using namespace std;
 
 const int N = 2e5+4;
+const int inf = 1e9+4;
 
 int n,m;
 vector<pair<int,int>> adj[N];
 bool vis[N];
 int dis[N];
+int up[N];
 
-void bfs01(int rt){
+void bfs01(int s){
     for (int i=1; i<=n; i++){
-        dis[i] = -1;
+        dis[i] = inf;
         vis[i] = false;
     }
 
     deque<int> dq;
-    dq.push_front(rt);
-    dis[rt] = 0;
+    dq.push_front(s);
+    dis[s] = 0;
 
     while (!dq.empty()){
         int u = dq.front();
@@ -26,8 +28,9 @@ void bfs01(int rt){
         vis[u] = true;
 
         for (auto [v, we] : adj[u]){
-            if (dis[v] == -1 || dis[v] > dis[u] + we){
+            if (dis[v] > dis[u] + we){
                 dis[v] = dis[u] + we;
+                up[v] = u;
                 if (we == 0)
                     dq.push_front(v);
                 else

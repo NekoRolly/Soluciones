@@ -2,9 +2,13 @@
 using namespace std;
 typedef long long ll;
 
+const int N = 54;
+const int M = 104;
+const int inf = 1e9+4;
+
 int n;
-int lle[51],fe[51];
-int dp[51][101][101];
+int lle[N],fe[N];
+int dp[N][M][M];
 
 int main(){
     ios_base::sync_with_stdio(0);
@@ -16,7 +20,7 @@ int main(){
         cin >> lle[i] >> fe[i];
     }
 
-    memset(dp, -100, sizeof dp);
+    memset(dp, -inf, sizeof dp);
     dp[0][0][0] = 0;
 
     for (int i=1; i<=n; i++)
