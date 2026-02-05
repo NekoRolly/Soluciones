@@ -8,14 +8,14 @@ int vis[N];
 bool found;
 vector<int> ciclo,rec;
 
-// DFS PARA HALLAR UN CICLO
-void dfs(int u,int p){
+// DFS PARA HALLAR UN CICLO EN GRAFO DIRIGIDO
+void dfs(int u){
     vis[u] = 1;
     rec.push_back(u);
     for (int v : adj[u]){
         if (vis[v] == 0)
-            dfs(v, u);
-        else if (vis[v] == 1 && v != p && !found){
+            dfs(v);
+        else if (vis[v] == 1 && !found){
             found = true;
             bool in = false;
             for (int x : rec){
@@ -38,12 +38,11 @@ int main(){
         int a,b;
         cin >> a >> b;
         adj[a].push_back(b);
-        adj[b].push_back(a);
     }
 
     for (int i=1; i<=n; i++)
         if (vis[i] == 0)
-            dfs(i, -1);
+            dfs(i);
 
     if (!found)
         cout << "IMPOSSIBLE\n";
