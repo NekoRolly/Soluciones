@@ -1,41 +1,29 @@
 #include<bits/stdc++.h>
 using namespace std;
-
 typedef long long ll;
-typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
 
-const int inf = 1e9 + 4;
-const ll infll = 1e18 + 4;
-const int mod = 1e9 + 7;
-const int N = 2e5 + 4;
-
-void solve(){
-    string s;
-    cin >> s;
-
-    set<string> st;
-    sort(s.begin(), s.end());
-
-    do{
-        st.insert(s);
-    } while (next_permutation(s.begin(), s.end())); // O(n!)
-
-    cout << st.size() << '\n';
-
-    for (string s : st)
-        cout << s << '\n';
-}
+// F de fuerza bruta y recursión.
 
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int kou = 1;
-    // cin >> kou;
+    string s;
+    cin >> s;
 
-    while (kou--)
-        solve();
+    // ordenar a la permutación lexicograficamente menor
+    sort(s.begin(), s.end());
+
+    vector<string> vec;
+    do{
+        // cout << s << "\n";        
+        vec.push_back(s);
+    } while(next_permutation(s.begin(), s.end()));
+
+    cout << vec.size() << "\n";
+    for (string s : vec)
+        cout << s << "\n";
+    // cout << "\n";
 
     return 0;
 }
