@@ -5,12 +5,8 @@ typedef long long ll;
 const int N = 1004;
 const int inf = 1e9+4;
 
-struct Edge{
-    int u,v,w; // u ---w---> v
-};
-
 int n,m,q,s;
-vector<Edge> edges;
+vector<pair<int,int>> adj[N];
 int dis[N];
 int up[N]; // para reconstruir el path
 
@@ -23,11 +19,14 @@ void bellman_ford(int s){
         // n-1 fases para hallar los shortest paths
         // n fases para detectar los vertices sin shortest path
         bool flag = false;
-        for (auto [u, v, w] : edges){
-            if (dis[u] < inf && dis[v] > dis[u] + w){
-                up[v] = u;
-                dis[v] = i >= n ? -inf : dis[u] + w;
-                flag = true;
+        for (int u=0; u<n; u++){
+            if (dis[u] == inf) continue;
+            for (auto [v, w] : adj[u]){
+                if (dis[v] != -inf && dis[v] > dis[u] + w){
+                    up[v] = u;
+                    dis[v] = i >= n ? -inf : dis[u] + w;
+                    flag = true;
+                }
             }
         }
         // flag = false si no hubo cambio
@@ -40,10 +39,15 @@ int main(){
     cin.tie(nullptr);
 
     while (cin >> n >> m >> q >> s && n != 0){
-        edges.resize(m);
 
-        for (auto &[u, v, w] : edges)
+        for (int i=0; i<n; i++)
+            adj[i].clear();
+
+        for (int i=0; i<m; i++){
+            int u,v,w;
             cin >> u >> v >> w;
+            adj[u].push_back({v, w});
+        }
 
         bellman_ford(s);
         // if dis[i] = inf, entonces no hay path de s a i
