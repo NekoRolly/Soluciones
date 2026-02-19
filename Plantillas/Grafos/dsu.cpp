@@ -1,83 +1,51 @@
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-const int N = 1e5+4;
-const ll M = 1e13;
-const ll inf = 1e18;
-const int mod = 1e9+7;
 
-struct Dsu{
-	int t[N],sz[N];
+struct DSU{
+    vector<int> up,sz;
+    int comp,mx_comp;
 
-	void build(int n){
-		for (int i=1; i<=n; i++)
-			t[i] = i, sz[i] = 1;
-	}
+    void build(int n){
+        up.resize(n+1);
+        sz.assign(n+1, 1);
+        comp = n, mx_comp = 1;
+        for (int i=1; i<=n; i++)
+            up[i] = i;
+    }
 
-	int find(int x){
-		return (x == t[x] ? x : t[x] = find(t[x]));
-	}
-
-	void join(int a,int b){
-		a = find(a), b = find(b);
-		if (a != b){
-			if (sz[a] > sz[b])
-				swap(a, b);
-			t[a] = b;
-			sz[b] += sz[a];
-		}
-	}
-} dsu;
-
-// dsu rollback
-struct Dsu
-{
-    int n,t[N],sz[N];
-    stack<int> d;
-
-    int find(int x){
-        return x == t[x] ? x : find(t[x]);
+    int find(int x){ // O(1) amortizado
+        if (up[x] == x) return x;
+        return up[x] = find(up[x]);
     }
 
     void join(int a,int b){
-        a = find(a);
-        b = find(b);
-        if (a == b){
-            d.push(-1);
-            return;
-        }
-        if (sz[a] > sz[b]){
-            swap(a, b);
-        }
-        t[a] = b;
-        sz[b] += sz[a];
-        d.push(a);
-    }
-
-    void back(){
-        if (d.top() != -1){
-            int a = d.top();
-            int b = t[a];
-            t[a] = a;
-            sz[b] -= sz[a];
-        }
-        d.pop();
-    }
-
-    Dsu(int n) : n(n) {
-        for (int i=0; i<n; i++){
-            t[i] = i;
-            sz[i] = 1;
+        a = find(a), b = find(b);
+        if (a != b){
+            if (sz[a] > sz[b]) swap(a, b);
+            up[a] = b;
+            sz[b] += sz[a];
+            comp--;
+            mx_comp = max(mx_comp, sz[b]);
         }
     }
+} dsu;
 
-    Dsu(){}
-};
+int n,m;
 
-struct edge{
-	int a,b,w;
+int main(){
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    
+    cin >> n >> m;
+    dsu.build(n);
 
-	bool operator<(edge x){
-		return w < x.w;
-	}
-};
+    while (m--){
+        int a,b;
+        cin >> a >> b;
+        dsu.join(a, b);
+        cout << dsu.comp << " " << dsu.mx_comp << "\n";
+    }
+
+    return 0;
+}
