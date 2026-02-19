@@ -21,13 +21,12 @@ struct DSU{
 
     void join(int a,int b){
         a = find(a), b = find(b);
-        if (a != b){
-            if (sz[a] > sz[b]) swap(a, b);
-            up[a] = b;
-            sz[b] += sz[a];
-            comp--;
-            mx_comp = max(mx_comp, sz[b]);
-        }
+        if (a == b) return;
+        if (sz[a] > sz[b]) swap(a, b);
+        up[a] = b;
+        sz[b] += sz[a];
+        comp--;
+        mx_comp = max(mx_comp, sz[b]);
     }
 } dsu;
 
