@@ -1,45 +1,66 @@
 #include<bits/stdc++.h>
 using namespace std;
-typedef long long ll;
 typedef pair<int,int> pii;
+const int N = 2e5+4;
 
-const int N = 3e5+4;
-
-int n,m,ans;
-vector<int> adj[N];
+int n,m;
+vector<pii> adj[N]; // {v, id}
+// Se guarda ID cuando es multigrafo
 int L[N],low[N],cur;
+int col[N];
+vector<int> comp[N];
 
-// ALGORITMO DE TARJAN PARA HALLAR PUENTES
-void dfs(int u,int p){
+// DFS para hallar L[] y low[]
+void dfs1(int u,int p_id){
     low[u] = L[u] = ++cur;
-    for (int v : adj[u]){
-        if (v == p) continue;
-        if (L[v] != 0){
+    for (auto [v, id] : adj[u]){
+        if (id != p_id && L[v] != 0)
             low[u] = min(low[u], L[v]);
-            continue;
-        }
-        dfs(v, u);
-        if (low[v] > L[u]) ans++; // u->v es puente
-        low[u] = min(low[u], low[v]);   
+        if (L[v] != 0) continue;
+        dfs1(v, id);
+        low[u] = min(low[u], low[v]);
+    }
+}
+
+// DFS para asignar las componentes con col[]
+void dfs2(int u,int id){
+    col[u] = id;
+    for (auto [v, _] : adj[u]){
+        if (col[v] != 0) continue;
+        if (L[u] < low[v]) dfs2(v, ++cur); // u --- v es puente
+        else dfs2(v, id);
     }
 }
 
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
     cin >> n >> m;
 
     for (int i=0; i<m; i++){
         int a,b;
         cin >> a >> b;
-        adj[a].push_back(b);
-        adj[b].push_back(a);
+        adj[a].push_back({b, i});
+        adj[b].push_back({a, i});
     }
 
-    dfs(1, -1);
+    for (int i=0; i<n; i++)
+        if (L[i] == 0) dfs1(i, -1);
 
-    cout << ans << "\n";
-    
+    cur = 0;
+    for (int i=0; i<n; i++)
+        if (col[i] == 0) dfs2(i, ++cur);
+
+    for (int i=0; i<n; i++)
+        comp[col[i]].push_back(i);
+
+    cout << cur << "\n";
+    for (int i=1; i<=cur; i++){
+        cout << comp[i].size() << " ";
+        for (int x : comp[i]) cout << x << " ";
+        cout << "\n";
+    }
+
     return 0;
 }
