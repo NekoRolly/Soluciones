@@ -8,11 +8,9 @@ const int inf = 1e9+4;
 int n,m,q,s;
 vector<pair<int,int>> adj[N];
 int dis[N];
-int up[N]; // para reconstruir el path
 
 void bellman_ford(int s){
     fill(dis, dis+n, inf);
-    fill(up, up+n, -1);
     dis[s] = 0;
 
     for (int i=1; i<2*n; i++){
@@ -23,7 +21,6 @@ void bellman_ford(int s){
             if (dis[u] == inf) continue;
             for (auto [v, w] : adj[u]){
                 if (dis[v] != -inf && dis[v] > dis[u] + w){
-                    up[v] = u;
                     dis[v] = i >= n ? -inf : dis[u] + w;
                     flag = true;
                 }
