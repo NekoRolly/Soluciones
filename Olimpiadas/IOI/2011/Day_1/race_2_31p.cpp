@@ -27,7 +27,7 @@ void dfs1(int u,int p){
     }
 }
 
-void prefix(int u,int p){
+void add(int u,int p){
     for (auto [v, wv] : adj[u]){
         if (v == p) continue;
         for (int w=wv; w<=k; w++)
@@ -39,10 +39,10 @@ void prefix(int u,int p){
 
 void dfs2(int u,int p){
     for (int w=0; w<=k; w++) aux[w] = dp2[u][w];
-    prefix(u, p);
+    add(u, p);
     fill(aux, aux+k+1, inf);
     reverse(adj[u].begin(), adj[u].end());
-    prefix(u, p);
+    add(u, p);
     for (auto [v, wv] : adj[u])
         if (v != p) dfs2(v, u);
 }
