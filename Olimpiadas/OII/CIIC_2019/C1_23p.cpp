@@ -2,6 +2,7 @@
 Complejidad: O(n*logn + k^2 + q1*n + q*(logn+30))
 Memoria: O(n + k^2)
 Puntaje: 5 + 8 + 10 + 0 + 0 = 23
+Idea: Arreglo auxiliar de posiciones y optimizar query 3
 */
 #include<bits/stdc++.h>
 using namespace std;

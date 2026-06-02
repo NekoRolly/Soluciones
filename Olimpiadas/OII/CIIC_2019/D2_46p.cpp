@@ -2,6 +2,7 @@
 Complejidad: O(MODlogMOD + 3^n + q*n)
 Memoria: O(MOD + 2^n)
 Puntaje: 6 + 0 + 15 + 25 + 0 = 46
+Idea: Precálculo para cada resto y máscara
 */
 #include<bits/stdc++.h>
 using namespace std;

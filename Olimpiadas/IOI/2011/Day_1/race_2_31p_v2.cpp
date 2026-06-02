@@ -1,3 +1,9 @@
+/*
+Complejidad: O(n*k)
+Memoria: O(n*k)
+Puntaje: 9 + 0 + 22 + 0 = 31
+Idea: DP on trees y combinar paths verticales
+*/
 #include "race.h"
 #include<bits/stdc++.h>
 using namespace std;
@@ -16,11 +22,8 @@ void dfs(int u,int p){
     for (auto [v, w] : adj[u]){
         if (v == p) continue;
         dfs(v, u);
-        //cerr << u << " -> " << v << '\n';
-        for (int we=0; we+w<=k; we++){
+        for (int we=0; we+w<=k; we++)
             ans = min(ans, dp[v][we] + dp[u][k-w-we] + 1);
-            //cerr << ans << " <- " << dp[v][we] + dp[u][k-w-we] + 1 << '\n';
-        }
         for (int we=0; we+w<=k; we++)
             dp[u][w+we] = min(dp[u][w+we], dp[v][we] + 1);
     }

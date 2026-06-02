@@ -1,7 +1,8 @@
 /*
 Complejidad: O(n*k)
 Memoria: O(n*k)
-Puntaje: 9 + 0 + 22 + 0 + 0 = 31
+Puntaje: 9 + 0 + 22 + 0 = 31
+Idea: DP on trees con rerooting
 */
 #include "race.h"
 #include<bits/stdc++.h>

@@ -2,6 +2,7 @@
 Complejidad: O(n*logn + k^2 + q*(logn + 30))
 Memoria: O(n + k^2)
 Puntaje: 5 + 8 + 10 + 35 + 42 = 100
+Idea: Lista Enlazada para optimizar query 1
 */
 #include<bits/stdc++.h>
 using namespace std;

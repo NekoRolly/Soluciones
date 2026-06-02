@@ -1,3 +1,9 @@
+/*
+Complejidad: O(nlogn^2)
+Memoria: O(n)
+Puntaje: 9 + 12 + 22 + 57 = 100
+Idea: Dsu on Trees y combinar paths verticales
+*/
 #include "race.h"
 #include<bits/stdc++.h>
 using namespace std;
@@ -16,8 +22,8 @@ ll dis[N];
 int dfs_pre(int u,int p,int H,ll Dis){
     sz[u] = 1, h[u] = H, dis[u] = Dis;
     L[u] = cur++, V[L[u]] = u;
-    for (auto [v, w] : adj[u])
-        if (v != p) sz[u] += dfs_pre(v, u, H+1, Dis + w);
+    for (auto [v, w] : adj[u]) if (v != p)
+        sz[u] += dfs_pre(v, u, H+1, Dis + w);
     return sz[u];
 }
 

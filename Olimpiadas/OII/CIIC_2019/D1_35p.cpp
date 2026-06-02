@@ -2,6 +2,7 @@
 Complejidad: O(MODlogMOD + q*n*2^n)
 Memoria: O(n + MOD)
 Puntaje: 6 + 14 + 15 + 0 + 0 = 35
+Idea: Precálculo para cada resto y fuerza bruta por consulta
 */
 #include<bits/stdc++.h>
 using namespace std;

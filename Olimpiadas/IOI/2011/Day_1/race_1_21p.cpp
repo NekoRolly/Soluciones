@@ -1,3 +1,9 @@
+/*
+Complejidad: O(n^2)
+Memoria: O(n)
+Puntaje: 9 + 12 + 0 + 0 = 21
+Idea: DFS desde cada vértice
+*/
 #include "race.h"
 #include<bits/stdc++.h>
 using namespace std;
