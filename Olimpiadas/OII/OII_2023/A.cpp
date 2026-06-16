@@ -81,7 +81,6 @@ int main(){
         for (int v : adj[u])
             if (make_pair(val[v], v) < make_pair(val[u], u)){
                 auto [pa, hi] = dsu.merge(u, v);
-                // cerr << pa << " -> " << hi << '\n';
                 _adj[pa].push_back(hi);
             }
 
