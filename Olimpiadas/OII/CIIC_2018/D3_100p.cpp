@@ -25,7 +25,7 @@ int main(){
     cin >> n >> m;
 
     for (int i=1; i<=n; i++)
-       vis[i][i] = true;
+        vis[i][i] = true;
 
     while (m--){
         int u,v; cin >> u >> v;
