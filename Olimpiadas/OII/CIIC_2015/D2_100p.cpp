@@ -1,3 +1,9 @@
+/*
+Complejidad: O(n*logn)
+Memoria: O(n*logn)
+Puntaje: 40 + 60 = 100
+Idea: Binary lifting en grafo funcional
+*/
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;

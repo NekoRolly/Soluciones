@@ -1,3 +1,10 @@
+/*
+Complejidad: O((n+q)*logL)
+Memoria: O(L)
+Puntaje: 25 + 30 + 45 = 100
+Idea: Modificar la query y responder con DS en rango
+Nota: L <= 1000000
+*/
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;

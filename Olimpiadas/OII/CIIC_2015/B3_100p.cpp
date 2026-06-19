@@ -1,3 +1,9 @@
+/*
+Complejidad: O(n*logn + m*logm)
+Memoria: O(n + m)
+Puntaje: 30 + 40 + 30 = 100
+Idea: Ordenar y simular con two pointers
+*/
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
