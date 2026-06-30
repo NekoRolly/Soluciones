@@ -1,9 +1,7 @@
-/*
-Complejidad: O(n*maxC)
-Memoria: O(n)
-Puntaje: 30 + 0 = 30
-Idea: Simulación
-*/
+// Complejidad  : O(n*maxC)
+// Memoria      : O(n)
+// Puntaje      : 30 + 0 = 30
+// Idea         : Fuerza Bruta y Simulación
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;

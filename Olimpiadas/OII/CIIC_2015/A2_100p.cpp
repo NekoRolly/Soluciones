@@ -1,9 +1,7 @@
-/*
-Complejidad: O(n)
-Memoria: O(1)
-Puntaje: 30 + 70 = 100
-Idea: Ad Hoc
-*/
+// Complejidad  : O(n)
+// Memoria      : O(1)
+// Puntaje      : 30 + 70 = 100
+// Idea         : Ad Hoc
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;

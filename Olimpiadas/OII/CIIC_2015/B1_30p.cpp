@@ -1,9 +1,7 @@
-/*
-Complejidad: O(n*m)
-Memoria: O(n+m)
-Puntaje: 30 + 0 + 0 = 30
-Idea: Fuerza Bruta
-*/
+// Complejidad  : O(n*m)
+// Memoria      : O(n+m)
+// Puntaje      : 30 + 0 + 0 = 30
+// Idea         : Fuerza Bruta
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;

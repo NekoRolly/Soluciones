@@ -1,10 +1,7 @@
-/*
-Complejidad: O((n+q)logL)
-Memoria: O(L)
-Puntaje: 0 + 30 + 0 = 30
-Idea: Update en rango y query en punto
-Nota: L <= 1000000 y caso de consulta en punto A = B
-*/
+// Complejidad  : O((n*q)*logL)
+// Memoria      : O(L)
+// Puntaje      : 0 + 30 + 0 = 30
+// Idea         : Estructuras de Datos
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;

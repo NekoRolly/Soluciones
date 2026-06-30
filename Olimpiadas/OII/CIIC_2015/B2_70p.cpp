@@ -1,9 +1,7 @@
-/*
-Complejidad: O(nlogn + m + L)
-Memoria: O(n + m + L)
-Puntaje: 30 + 40 + 0 = 70
-Idea: Ordenar y simular
-*/
+// Complejidad  : O(n*logn + m + L)
+// Memoria      : O(n + m + L)
+// Puntaje      : 30 + 40 + 0 = 70
+// Idea         : Simulación
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;

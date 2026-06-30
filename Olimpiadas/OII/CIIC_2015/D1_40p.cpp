@@ -1,9 +1,7 @@
-/*
-Complejidad: O(n^2)
-Memoria: O(n)
-Puntaje: 40 + 0 = 40
-Idea: Simulación
-*/
+// Complejidad  : O(n^2)
+// Memoria      : O(n)
+// Puntaje      : 40 + 0 = 40
+// Idea         : Simulación
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;

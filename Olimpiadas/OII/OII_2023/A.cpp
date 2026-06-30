@@ -19,13 +19,12 @@ struct Dsu{
         return t[x] = find(t[x]);
     }
 
-    pii merge(int a,int b){
+    void merge(int a,int b){
         a = find(a), b = find(b);
         assert(a != b);
         if (sz[a] > sz[b]) swap(a, b);
         t[a] = b, sz[b] += sz[a];
         if (mx[a] > mx[b]) swap(mx[a], mx[b]);
-        return {mx[b].second, mx[a].second};
     }
 } dsu;
 
@@ -80,8 +79,9 @@ int main(){
     for (auto [_val, u] : vec)
         for (int v : adj[u])
             if (make_pair(val[v], v) < make_pair(val[u], u)){
-                auto [pa, hi] = dsu.merge(u, v);
-                _adj[pa].push_back(hi);
+                int hi = dsu.mx[dsu.find(v)].second;
+                dsu.merge(u, v);
+                _adj[u].push_back(hi);
             }
 
     int rt = dsu.mx[dsu.find(1)].second;
