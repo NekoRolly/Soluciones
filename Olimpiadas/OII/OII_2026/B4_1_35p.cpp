@@ -44,6 +44,8 @@ void solve_p2(){
     for (int u=1; u<=n; u++){
         int hijos = adj[u].size();
         int impares = Impares, cnt = cnt_valid;
+        cnt -= valid[u];
+        if (hijos <= 2*hojas[u]) cnt++;
         if (hijos%2 == 1) impares++;
         else impares--;
         if (adj[u].size() == 1){
