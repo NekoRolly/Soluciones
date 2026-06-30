@@ -1,7 +1,7 @@
 // Complejidad  : O(n)
 // Memoria      : O(n)
 // Puntaje      : 5 + 7 + 10 + 18 + 25 + 35 = 100
-// Idea         : DP + Min Queue / Monotonic Queue
+// Idea         : DP + Min Queue
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
